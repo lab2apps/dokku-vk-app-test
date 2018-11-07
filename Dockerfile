@@ -1,11 +1,11 @@
 # build environment
 FROM node:alpine as builder
 WORKDIR /usr/src/app
-COPY package.json yarn.lock ./
+COPY package.json package-json.lock ./
 ENV NODE_ENV development
-RUN yarn
+RUN npm install
 COPY . ./
-RUN yarn build
+RUN npm run build
 
 # production environment
 FROM nginx:alpine
